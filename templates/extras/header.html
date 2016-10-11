@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Student Management System</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<!--<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
+	<link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+	<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<style>
+   hr {
+       border-top: 1px dotted #000000 !important;
+       margin-bottom:5px !important; 
+       margin-top:5px !important;
+   }
+</style>
+
+
+</head>
+<body>
+
+{% block content %} {% endblock %}
+
+
+
+
+<div class=" btn btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalins">Insert</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalupd">Update</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaldel">Delete</button>
+  </div>
+</div>
+
+
+
+<!-- Modal insert -->
+<div class="modal fade" id="modalins" tabindex="-1" role="dialog" aria-labelledby="myModalLabelIns">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabelIns">Insert</h4>
+      </div>
+      <div class="modal-body">
+       <div class="input-group input-group-sm">
+		<form class="form-signin" action = "{{ url_for('insert') }}" method = "post">
+		<label for="name" class="sr-only">Name</label>
+		<input type="text" name="insname"class="form-control" placeholder="Name" aria-describedby="sizing-addon3" required autofocus><br>
+		<br/><br/><label for="roll_no" class="sr-only">Roll No.</label>
+		<input type="text" name="insroll_no" class="form-control" placeholder="Roll No." required><br/>
+		<label for="studentid" class="sr-only">Student ID</label><br/>
+		<br/><input type="text" name="insstudentid" class="form-control" placeholder="Student ID" required>
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+	</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal update-->
+<div class="modal fade" id="modalupd" tabindex="-1" role="dialog" aria-labelledby="myModalLabelUpd">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabelUpd">Update</h4>
+      </div>
+
+      <div class="modal-body">
+	<div class="input-group input-group-sm">
+		<h4 class="modal-title" id="myModalLabelUpd">Enter current student ID:</h4>
+		<form class="form-signin" action = "{{ url_for('update') }}" method = "post">
+		<label for="studentid" class="sr-only">Student ID</label>
+		<input type="text" name="updstudentid" class="form-control" placeholder="Student ID" aria-describedby="sizing-addon3" required autofocus>	   	
+		<h4">Enter new details:</h4><br/>
+		<label for="name" class="sr-only">Name</label>
+		<input type="text" name="newname" class="form-control" placeholder="Name" aria-describedby="sizing-addon3" required autofocus><br>
+		<br/><br/><label for="roll_no" class="sr-only">Roll No.</label>
+		<input type="text" name="newroll_no" class="form-control" placeholder="Roll No." required><br/>
+		<label for="newstudentid" class="sr-only">Student ID</label><br/>
+		<br/><input type="text" name="newstudentid" class="form-control" placeholder="Student ID" required>
+		
+           </div>
+	</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal delete-->
+<div class="modal fade" id="modaldel" tabindex="-1" role="dialog" aria-labelledby="myModalLabelDel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabelDel">Delete</h4>
+      </div>
+      <div class="modal-body">
+               <div class="input-group input-group-sm">
+		<form class="form-signin" action = "{{ url_for('delete') }}" method = "post">
+		<label for="studentid" class="sr-only">Student ID</label>
+		<input type="text" name="delstudentid" class="form-control" placeholder="Student ID" aria-describedby="sizing-addon3" required autofocus>
+	
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+	</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- table-->
+
+<table class="table table-striped">
+
+	 <thead>
+            <tr>
+               <th>Name</th>
+               <th>Roll No.</th>
+               <th>Student id</th>
+            </tr>
+         </thead>
+
+	<tbody>
+            {% for student in studentsall %}
+               <tr>
+                  <td>{{ student.name }}</td>
+		  <td>{{ student.roll_no }}</td>
+		  <td>{{ student.studentid }}</td>
+               </tr>
+            {% endfor %}
+
+         </tbody>
+	
+</table>
+
+
+
+</body>
+</html>

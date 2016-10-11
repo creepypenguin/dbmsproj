@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Student Management System</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<!--<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
+	<link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+</head>
+<body>
+
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger" role="alert">
+            {{ message }}
+         </div>
+      {%- endfor %}
+    <div class="container">
+
+      <form class="form-signin" action = "{{ request.path }}" method = "post">
+        <h2 class="form-signin-heading">Sign in</h2>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+        <br/>
+	<label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+</body>
+</html>

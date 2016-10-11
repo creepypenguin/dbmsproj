@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+   <style>
+
+   table {
+    border-collapse: collapse;
+}
+table {
+    width: 75%;
+}
+td,th {
+    height: 50px;
+
+}
+
+th, td {
+    text-align: left;
+}
+
+
+tr:nth-child(even) {background-color: #f2f2f2}
+th {
+    background-color: grey;
+    color: white;
+}
+
+   </style>
+   </head>
+   <body>
+      
+      <h3>
+         <a href = "{{ url_for('show_all') }}">DBMS Project-Students Database</a>
+      </h3>
+      
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+		
+      <h3>Students (<a href = "{{ url_for('new') }}">Add Student
+         </a>)</h3>
+      
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>City</th>
+               <th>Address</th>
+               <th>Pin</th>
+	       <th>Roll No.</th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for student in students %}
+               <tr>
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.city }}</td>
+                  <td>{{ student.addr }}</td>
+                  <td>{{ student.pin }}</td>
+		  <td>{{ student.roll_no }}</td>
+               </tr>
+            {% endfor %}
+
+         </tbody>
+      </table>
+
+
+
+
+
+
+
+<h3>Student whose roll_no = 12</h3>s
+
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>City</th>
+               <th>Address</th>
+               <th>Pin</th>
+	       <th>Roll No.</th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for student in students2 %}
+               <tr>
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.city }}</td>
+                  <td>{{ student.addr }}</td>
+                  <td>{{ student.pin }}</td>
+		  <td>{{ student.roll_no }}</td>
+               </tr>
+            {% endfor %}
+
+         </tbody>
+      </table>
+	      
+   </body>
+</html>
